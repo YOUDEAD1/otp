@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0a0a0a">
+<title>STOCK LARA OTP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  :root {
+    /* Diamond / Silver / Black palette */
+    --bg: #0a0a0a;
+    --bg-elevated: #141414;
+    --bg-card: #161616;
+    --bg-input: #1c1c1c;
+    --bg-hover: #1f1f1f;
+
+    --border: #2a2a2a;
+    --border-strong: #383838;
+    --border-bright: #4a4a4a;
+
+    --text: #fafafa;
+    --text-muted: #a0a0a0;
+    --text-dim: #6b6b6b;
+
+    /* Diamond/Silver gradient */
+    --silver-1: #e8e8e8;
+    --silver-2: #c4c4c4;
+    --silver-3: #9a9a9a;
+    --diamond-glow: rgba(255, 255, 255, 0.08);
+
+    --accent: #ffffff;
+    --accent-soft: rgba(255, 255, 255, 0.06);
+
+    --danger: #ff5757;
+    --danger-bg: rgba(255, 87, 87, 0.1);
+    --success: #4ade80;
+    --success-bg: rgba(74, 222, 128, 0.1);
+
+    --radius: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+    --shadow: 0 4px 16px rgba(0,0,0,0.5);
+    --shadow-lg: 0 12px 48px rgba(0,0,0,0.7);
+    --shadow-glow: 0 0 40px rgba(255,255,255,0.04);
+  }
+
+  html, body { height: 100%; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,255,255,0.06), transparent),
+      radial-gradient(ellipse 60% 40% at 50% 100%, rgba(255,255,255,0.03), transparent);
+    background-attachment: fixed;
+  }
+
+  /* === NAV === */
+  .nav {
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #ffffff 0%, #c4c4c4 50%, #6b6b6b 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.1), inset 0 1px 0 rgba(255,255,255,0.5);
+    position: relative;
+    overflow: hidden;
+  }
+  .logo-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%);
+    animation: shine 3s ease-in-out infinite;
+  }
+  @keyframes shine {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+  }
+
+  .brand { display: flex; flex-direction: column; line-height: 1.1; min-width: 0; }
+  .brand-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #ffffff 0%, #c4c4c4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .brand-tag {
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 3px;
+    font-weight: 500;
+  }
+
+  .lang-switch {
+    margin-left: auto;
+    display: flex;
+    background: var(--bg-input);
+    border-radius: 100px;
+    padding: 3px;
+    border: 1px solid var(--border);
+  }
+  body[dir="rtl"] .lang-switch { margin-left: 0; margin-right: auto; }
+  .lang-btn {
+    background: transparent;
+    border: none;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 100px;
+    color: var(--text-dim);
+    transition: all 0.2s;
+    font-family: inherit;
+    letter-spacing: 0.5px;
+  }
+  .lang-btn.active {
+    background: linear-gradient(135deg, #ffffff 0%, #c4c4c4 100%);
+    color: #000;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.2);
+  }
+
+  /* === CONTAINER === */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+  }
+
+  /* === HERO === */
+  .hero { text-align: center; padding: 32px 0 28px; }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 5px 12px;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+  }
+  .hero-badge .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--success);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #ffffff 0%, #c4c4c4 60%, #6b6b6b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+  }
+  .hero p {
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* === GRID === */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 20px;
+    margin-top: 24px;
+  }
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; gap: 16px; }
+  }
+
+  /* === CARD === */
+  .card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    padding: 22px;
+    box-shadow: var(--shadow), var(--shadow-glow);
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  }
+
+  .card-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text);
+    letter-spacing: 0.3px;
+  }
+  .card-title-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .card-subtitle { font-size: 12px; color: var(--text-dim); margin-bottom: 16px; }
+
+  /* === FORM === */
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
+  }
+  textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    font-size: 13px;
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    background: var(--bg-input);
+    color: var(--text);
+    resize: vertical;
+    min-height: 160px;
+    outline: none;
+    transition: all 0.2s;
+    direction: ltr;
+    text-align: left;
+    line-height: 1.6;
+  }
+  textarea:focus {
+    border-color: var(--border-bright);
+    background: var(--bg-elevated);
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.05);
+  }
+  textarea::placeholder { color: var(--text-dim); }
+
+  .hint {
+    font-size: 11px;
+    color: var(--text-dim);
+    background: var(--bg-input);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+    margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    direction: ltr;
+    text-align: left;
+  }
+
+  /* === BUTTONS === */
+  .row {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    background: linear-gradient(135deg, #ffffff 0%, #d4d4d4 100%);
+    color: #000;
+    border: none;
+    border-radius: var(--radius);
+    padding: 12px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    font-family: inherit;
+    letter-spacing: 0.2px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.1), inset 0 1px 0 rgba(255,255,255,0.5);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(255,255,255,0.15), inset 0 1px 0 rgba(255,255,255,0.6);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn:disabled {
+    background: var(--bg-input);
+    color: var(--text-dim);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  .btn-secondary {
+    background: var(--bg-input);
+    color: var(--text);
+    border: 1px solid var(--border);
+    box-shadow: none;
+  }
+  .btn-secondary:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-strong);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* === TOGGLE === */
+  .auto-section {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  body[dir="rtl"] .auto-section { margin-left: 0; margin-right: auto; }
+  .toggle {
+    width: 38px;
+    height: 22px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .toggle.on {
+    background: linear-gradient(135deg, #ffffff 0%, #c4c4c4 100%);
+    border-color: rgba(255,255,255,0.3);
+  }
+  .toggle::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: var(--text-muted);
+    border-radius: 50%;
+    top: 50%;
+    left: 3px;
+    transform: translateY(-50%);
+    transition: all 0.3s;
+  }
+  .toggle.on::after {
+    background: #000;
+    transform: translateY(-50%) translateX(16px);
+  }
+
+  /* === ALERTS === */
+  .alert {
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    font-size: 13px;
+    margin-top: 14px;
+    display: none;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid;
+  }
+  .alert.error { background: var(--danger-bg); color: var(--danger); border-color: rgba(255,87,87,0.2); display: flex; }
+  .alert.success { background: var(--success-bg); color: var(--success); border-color: rgba(74,222,128,0.2); display: flex; }
+
+  /* === LOADER === */
+  .loader {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-top: 14px;
+  }
+  .loader.show { display: flex; }
+  .spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--border);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* === STATS === */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .stat {
+    background: var(--bg-input);
+    border-radius: var(--radius);
+    padding: 14px 12px;
+    text-align: center;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .stat::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  }
+  .stat-val {
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff 0%, #c4c4c4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+  }
+  .stat-lbl {
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+
+  /* === EMPTY === */
+  .empty {
+    text-align: center;
+    padding: 56px 20px;
+    color: var(--text-dim);
+  }
+  .empty-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    color: var(--text-muted);
+  }
+  .empty p { font-size: 14px; color: var(--text-muted); font-weight: 500; }
+  .empty .small { font-size: 12px; margin-top: 6px; color: var(--text-dim); font-weight: 400; }
+
+  /* === ACCOUNT GROUP === */
+  .account-group {
+    margin-bottom: 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-input);
+  }
+  .account-header {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    padding: 10px 14px;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border);
+    direction: ltr;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .account-header.error-acc { background: var(--danger-bg); color: var(--danger); }
+  .account-header .count-badge {
+    background: var(--bg);
+    color: var(--text-muted);
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: 1px solid var(--border);
+  }
+
+  /* === EMAIL ITEM === */
+  .email-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border);
+  }
+  .email-item:last-child { border-bottom: none; }
+  .email-item:hover { background: var(--bg-hover); }
+  .email-item.unread { background: rgba(255,255,255,0.02); }
+  .email-item.unread::before {
+    content: '';
+    width: 3px;
+    background: linear-gradient(180deg, #fff, #c4c4c4);
+    border-radius: 2px;
+    align-self: stretch;
+    margin: 2px 0;
+    flex-shrink: 0;
+  }
+  .email-item.unread .email-from { color: #fff; font-weight: 700; }
+
+  .avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+  }
+  .email-body { flex: 1; min-width: 0; }
+  .email-from {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .email-subject {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .email-preview {
+    font-size: 12px;
+    color: var(--text-dim);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.4;
+  }
+  .email-date {
+    font-size: 11px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+    text-align: right;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  body[dir="rtl"] .email-date { text-align: left; }
+
+  /* === MODAL === */
+  .modal-bg {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .modal-bg.open { display: flex; }
+  .modal {
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    width: 100%;
+    max-width: 720px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+  }
+  .modal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    gap: 12px;
+  }
+  .modal-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    flex: 1;
+    letter-spacing: -0.2px;
+  }
+  .modal-close {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--text-muted);
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+  .modal-close:hover { background: var(--bg-hover); color: var(--text); }
+  .modal-meta {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    font-size: 13px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+  }
+  .modal-meta div { margin: 3px 0; }
+  .modal-meta b { color: var(--text); font-weight: 600; margin-right: 6px; }
+  body[dir="rtl"] .modal-meta b { margin-right: 0; margin-left: 6px; }
+  .modal-content {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    word-wrap: break-word;
+  }
+  .modal-content img { max-width: 100%; height: auto; border-radius: 8px; }
+  .modal-content a { color: #c4c4c4; }
+
+  /* === FOOTER === */
+  .footer {
+    text-align: center;
+    padding: 32px 16px;
+    color: var(--text-dim);
+    font-size: 11px;
+    margin-top: 24px;
+    letter-spacing: 0.5px;
+  }
+  .footer strong {
+    background: linear-gradient(135deg, #ffffff 0%, #c4c4c4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+  }
+  .footer-sep { margin: 0 8px; color: var(--border-strong); }
+
+  /* === MOBILE === */
+  @media (max-width: 600px) {
+    .nav { padding: 12px 16px; }
+    .nav-inner { gap: 10px; }
+    .logo-box { width: 36px; height: 36px; font-size: 16px; }
+    .brand-name { font-size: 13px; letter-spacing: 0.5px; }
+    .brand-tag { font-size: 9px; }
+    .container { padding: 16px 14px 60px; }
+    .hero { padding: 20px 0; }
+    .hero h1 { font-size: 26px; }
+    .hero p { font-size: 13px; }
+    .card { padding: 16px; }
+    textarea { min-height: 130px; padding: 12px; font-size: 12px; }
+    .btn { padding: 11px 18px; font-size: 13px; flex: 1; justify-content: center; }
+    .btn-secondary { flex: 0 0 auto; }
+    .row { gap: 8px; }
+    .auto-section { width: 100%; margin-top: 4px; justify-content: space-between; padding: 0 4px; }
+    .stats { gap: 8px; }
+    .stat { padding: 12px 8px; }
+    .stat-val { font-size: 20px; }
+    .stat-lbl { font-size: 9px; }
+    .email-item { padding: 10px 12px; gap: 10px; }
+    .avatar { width: 34px; height: 34px; font-size: 12px; }
+    .email-subject { font-size: 13px; }
+    .modal { padding: 18px; max-height: 92vh; }
+    .modal-title { font-size: 16px; }
+  }
+
+  /* === SCROLLBAR === */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--border-bright); }
+
+  /* Selection */
+  ::selection { background: rgba(255,255,255,0.2); color: #fff; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo-box">S</div>
+    <div class="brand">
+      <div class="brand-name">STOCK LARA OTP</div>
+      <div class="brand-tag" data-i18n="tagline">Fast Email Reader</div>
+    </div>
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-lang="ar" onclick="setLang('ar')">AR</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      <span data-i18n="badge">Online · Microsoft Graph API</span>
+    </div>
+    <h1 data-i18n="title">STOCK LARA OTP</h1>
+    <p data-i18n="subtitle">Premium email reader for Hotmail & Outlook accounts. Built for speed.</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-title">
+        <div class="card-title-icon">📋</div>
+        <span data-i18n="credentialsTitle">Credentials</span>
+      </div>
+      <div class="card-subtitle" data-i18n="credentialsSubtitle">One account per line — supports multiple</div>
+
+      <label data-i18n="format">Format: email|password|refresh_token|client_id</label>
+      <textarea id="creds" placeholder="example@hotmail.com|password|refresh_token|client_id&#10;example2@outlook.com|password|refresh_token|client_id"></textarea>
+      <div class="hint">email|password|refresh_token|client_id</div>
+
+      <div class="row">
+        <button class="btn" id="readBtn" onclick="fetchEmails()">
+          <span data-i18n="readBtn">Read Emails</span>
+          <span style="font-size:16px">→</span>
+        </button>
+        <button class="btn btn-secondary" onclick="clearAll()">
+          <span data-i18n="clearBtn">Clear</span>
+        </button>
+        <div class="auto-section">
+          <span id="autoLabel" data-i18n="autoRefresh">Auto-refresh</span>
+          <button class="toggle" id="autoToggle" onclick="toggleAuto()"></button>
+        </div>
+      </div>
+
+      <div class="loader" id="loader">
+        <div class="spinner"></div>
+        <span data-i18n="fetching">Fetching from Microsoft Graph...</span>
+      </div>
+      <div class="alert" id="alertBox"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <div class="card-title-icon">📬</div>
+        <span data-i18n="inboxTitle">Inbox</span>
+      </div>
+      <div class="card-subtitle" id="resultSubtitle" data-i18n="resultsHere">Results will appear here instantly</div>
+
+      <div class="stats" id="stats" style="display:none">
+        <div class="stat"><div class="stat-val" id="stAccounts">0</div><div class="stat-lbl" data-i18n="accounts">Accounts</div></div>
+        <div class="stat"><div class="stat-val" id="stMessages">0</div><div class="stat-lbl" data-i18n="messages">Messages</div></div>
+        <div class="stat"><div class="stat-val" id="stUnread">0</div><div class="stat-lbl" data-i18n="unread">Unread</div></div>
+      </div>
+
+      <div id="results">
+        <div class="empty">
+          <div class="empty-icon">✦</div>
+          <p data-i18n="emptyMain">No emails yet</p>
+          <p class="small" data-i18n="emptySub">Enter credentials and click "Read Emails"</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <strong>STOCK LARA OTP</strong>
+    <span class="footer-sep">·</span>
+    <span data-i18n="footer">Data processed on your server — nothing stored</span>
+  </div>
+</div>
+
+<div class="modal-bg" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modalSubject">—</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-meta" id="modalMeta"></div>
+    <div class="modal-content" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const translations = {
+  en: {
+    tagline: "Fast Email Reader",
+    badge: "Online · Microsoft Graph API",
+    title: "STOCK LARA OTP",
+    subtitle: "Premium email reader for Hotmail & Outlook accounts. Built for speed.",
+    credentialsTitle: "Credentials",
+    credentialsSubtitle: "One account per line — supports multiple",
+    format: "Format: email|password|refresh_token|client_id",
+    readBtn: "Read Emails",
+    clearBtn: "Clear",
+    autoRefresh: "Auto-refresh",
+    autoRefreshOn: "Auto-refresh ON",
+    fetching: "Fetching from Microsoft Graph...",
+    inboxTitle: "Inbox",
+    resultsHere: "Results will appear here instantly",
+    accounts: "Accounts",
+    messages: "Messages",
+    unread: "Unread",
+    emptyMain: "No emails yet",
+    emptySub: 'Enter credentials and click "Read Emails"',
+    footer: "Data processed on your server — nothing stored",
+    alertEmpty: "Please enter credentials",
+    alertError: "Error: ",
+    msgsLabel: "msgs",
+    msgFrom: "From",
+    msgTo: "To",
+    msgDate: "Date",
+    noInbox: "Inbox is empty",
+    now: "now",
+  },
+  ar: {
+    tagline: "قارئ الإيميلات السريع",
+    badge: "متصل · Microsoft Graph API",
+    title: "STOCK LARA OTP",
+    subtitle: "أداة احترافية لقراءة رسائل Hotmail و Outlook. مصمم للسرعة.",
+    credentialsTitle: "بيانات الاعتماد",
+    credentialsSubtitle: "سطر لكل حساب — يدعم حسابات متعددة",
+    format: "الصيغة: email|password|refresh_token|client_id",
+    readBtn: "قراءة الرسائل",
+    clearBtn: "مسح",
+    autoRefresh: "تحديث تلقائي",
+    autoRefreshOn: "تحديث تلقائي مفعّل",
+    fetching: "جاري الجلب من Microsoft Graph...",
+    inboxTitle: "صندوق الوارد",
+    resultsHere: "النتائج ستظهر هنا فور الجلب",
+    accounts: "حسابات",
+    messages: "رسائل",
+    unread: "غير مقروء",
+    emptyMain: "لا توجد رسائل بعد",
+    emptySub: 'أدخل البيانات واضغط "قراءة الرسائل"',
+    footer: "البيانات تُعالج على سيرفرك فقط — لا تُحفظ",
+    alertEmpty: "يرجى إدخال بيانات الاعتماد",
+    alertError: "خطأ: ",
+    msgsLabel: "رسالة",
+    msgFrom: "من",
+    msgTo: "إلى",
+    msgDate: "التاريخ",
+    noInbox: "صندوق الوارد فارغ",
+    now: "الآن",
+  }
+};
+
+let currentLang = localStorage.getItem('lara_lang') || 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lara_lang', lang);
+  document.documentElement.lang = lang;
+  document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (translations[lang][key]) el.textContent = translations[lang][key];
+  });
+
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
+
+  if (autoOn) document.getElementById('autoLabel').textContent = translations[lang].autoRefreshOn;
+}
+
+const t = (key) => translations[currentLang][key];
+const successMsg = (n, a, time) => currentLang === 'ar'
+  ? `✓ تم جلب ${n} رسالة من ${a} حساب في ${time}ث`
+  : `✓ Fetched ${n} emails from ${a} accounts in ${time}s`;
+const summaryMsg = (n, a) => currentLang === 'ar'
+  ? `${n} رسالة من ${a} حساب`
+  : `${n} emails from ${a} accounts`;
+
+let autoInterval = null;
+let autoOn = false;
+
+// Silver/diamond avatar palette
+const avatarPalette = [
+  ['#e8e8e8', '#a0a0a0'],
+  ['#d4d4d4', '#888'],
+  ['#c4c4c4', '#777'],
+  ['#bdbdbd', '#666'],
+];
+
+function initials(name) {
+  if (!name) return '?';
+  const parts = name.trim().split(/\s+/);
+  return ((parts[0]?.[0] || '') + (parts[1]?.[0] || '')).toUpperCase() || '?';
+}
+function avatarStyle(seed) {
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) h = seed.charCodeAt(i) + ((h << 5) - h);
+  const [a, b] = avatarPalette[Math.abs(h) % avatarPalette.length];
+  return `background: linear-gradient(135deg, ${a} 0%, ${b} 100%); color: #000;`;
+}
+function showAlert(msg, type) {
+  const el = document.getElementById('alertBox');
+  el.className = 'alert ' + type;
+  el.textContent = msg;
+  setTimeout(() => el.className = 'alert', 5000);
+}
+function formatDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  const now = new Date();
+  const diff = (now - d) / 1000;
+  if (diff < 60) return t('now');
+  if (diff < 3600) return Math.floor(diff/60) + 'm';
+  if (diff < 86400) return Math.floor(diff/3600) + 'h';
+  return d.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit' });
+}
+
+async function fetchEmails() {
+  const credentials = document.getElementById('creds').value.trim();
+  if (!credentials) { showAlert(t('alertEmpty'), 'error'); return; }
+
+  document.getElementById('loader').classList.add('show');
+  document.getElementById('readBtn').disabled = true;
+  const start = Date.now();
+
+  try {
+    const res = await fetch('/api/read', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ credentials })
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    const elapsed = ((Date.now() - start) / 1000).toFixed(2);
+    renderResults(data);
+    showAlert(successMsg(data.totalMessages, data.accounts, elapsed), 'success');
+  } catch (err) {
+    showAlert(t('alertError') + err.message, 'error');
+  } finally {
+    document.getElementById('loader').classList.remove('show');
+    document.getElementById('readBtn').disabled = false;
+  }
+}
+
+function renderResults(data) {
+  const container = document.getElementById('results');
+  container.innerHTML = '';
+
+  let totalUnread = 0;
+  data.results.forEach(r => { if (r.success) totalUnread += r.messages.filter(m => !m.isRead).length; });
+
+  document.getElementById('stAccounts').textContent = data.accounts;
+  document.getElementById('stMessages').textContent = data.totalMessages;
+  document.getElementById('stUnread').textContent = totalUnread;
+  document.getElementById('stats').style.display = 'grid';
+  document.getElementById('resultSubtitle').textContent = summaryMsg(data.totalMessages, data.accounts);
+
+  if (data.totalMessages === 0 && data.results.every(r => r.success)) {
+    container.innerHTML = `<div class="empty"><div class="empty-icon">✓</div><p>${t('noInbox')}</p></div>`;
+    return;
+  }
+
+  data.results.forEach((acc, accIdx) => {
+    const group = document.createElement('div');
+    group.className = 'account-group';
+
+    const header = document.createElement('div');
+    header.className = 'account-header' + (acc.success ? '' : ' error-acc');
+    header.innerHTML = `<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(acc.email)}</span>` +
+      (acc.success
+        ? `<span class="count-badge">${acc.count} ${t('msgsLabel')}</span>`
+        : `<span style="font-size:11px">✕ ${escapeHtml(acc.error)}</span>`);
+    group.appendChild(header);
+
+    if (acc.success && acc.messages) {
+      acc.messages.forEach((msg, idx) => {
+        const div = document.createElement('div');
+        div.className = 'email-item' + (msg.isRead ? '' : ' unread');
+        div.onclick = () => openEmail(accIdx, idx);
+        div.innerHTML = `
+          <div class="avatar" style="${avatarStyle(msg.from || msg.fromEmail)}">${initials(msg.from)}</div>
+          <div class="email-body">
+            <div class="email-from">${escapeHtml(msg.from)}</div>
+            <div class="email-subject">${escapeHtml(msg.subject)}</div>
+            <div class="email-preview">${escapeHtml(msg.preview.substring(0, 100))}</div>
+          </div>
+          <div class="email-date">${formatDate(msg.date)}</div>
+        `;
+        group.appendChild(div);
+      });
+    }
+    container.appendChild(group);
+  });
+  window._lastData = data;
+}
+
+function openEmail(accIdx, msgIdx) {
+  const msg = window._lastData.results[accIdx].messages[msgIdx];
+  const accEmail = window._lastData.results[accIdx].email;
+
+  document.getElementById('modalSubject').textContent = msg.subject;
+  document.getElementById('modalMeta').innerHTML = `
+    <div><b>${t('msgFrom')}:</b> ${escapeHtml(msg.from)} &lt;${escapeHtml(msg.fromEmail)}&gt;</div>
+    <div><b>${t('msgTo')}:</b> ${escapeHtml(accEmail)}</div>
+    <div><b>${t('msgDate')}:</b> ${new Date(msg.date).toLocaleString('en-GB')}</div>
+  `;
+  const body = document.getElementById('modalBody');
+  if (msg.bodyType === 'html') body.innerHTML = msg.body;
+  else body.textContent = msg.body;
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+
+function clearAll() {
+  document.getElementById('creds').value = '';
+  document.getElementById('results').innerHTML =
+    `<div class="empty"><div class="empty-icon">✦</div><p>${t('emptyMain')}</p><p class="small">${t('emptySub')}</p></div>`;
+  document.getElementById('stats').style.display = 'none';
+  document.getElementById('resultSubtitle').textContent = t('resultsHere');
+}
+
+function toggleAuto() {
+  autoOn = !autoOn;
+  const btn = document.getElementById('autoToggle');
+  const lbl = document.getElementById('autoLabel');
+  btn.classList.toggle('on', autoOn);
+  if (autoOn) {
+    lbl.textContent = t('autoRefreshOn');
+    autoInterval = setInterval(() => {
+      if (document.getElementById('creds').value.trim()) fetchEmails();
+    }, 10000);
+  } else {
+    lbl.textContent = t('autoRefresh');
+    clearInterval(autoInterval);
+  }
+}
+
+function escapeHtml(s) {
+  if (!s) return '';
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+setLang(currentLang);
+</script>
+</body>
+</html>
