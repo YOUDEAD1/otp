@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: lara-otp
+    runtime: node
+    buildCommand: "npm install"
+    startCommand: "node server.js"
+    healthCheckPath: "/api/health"

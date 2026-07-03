@@ -14,6 +14,13 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(express.json({ limit: '2mb' }));
+
+// Request Logger
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url} - IP: ${req.ip}`);
+  next();
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ====================================================
@@ -141,4 +148,13 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`✅ Hotmail Reader running on http://0.0.0.0:${PORT}`);
+});
+
+// Process Error Listeners
+process.on('uncaughtException', (err) => {
+  console.error('❌ [UNCAUGHT EXCEPTION]', err);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('❌ [UNHANDLED REJECTION]', reason);
 });
